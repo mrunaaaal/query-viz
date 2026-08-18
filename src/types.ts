@@ -34,6 +34,9 @@ export interface ExplainRoot {
 /** Top-level shape of `EXPLAIN (ANALYZE, FORMAT JSON)` output — always a one-element array. */
 export type ExplainOutput = ExplainRoot[]
 
+/** The three heat bands the legend groups nodes into (ADR-0002). */
+export type HeatBand = "cool" | "warm" | "hot"
+
 /** The four warning rules from spec §4. */
 export type WarningRule =
   | "seq-scan"
