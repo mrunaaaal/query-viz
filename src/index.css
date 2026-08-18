@@ -9,3 +9,16 @@
 body {
   margin: 0;
 }
+
+/* Structural only — indent nesting for the tree. Design pass comes later. */
+.plan-tree-children {
+  padding-left: 1.5rem;
+  border-left: 1px solid;
+}
+
+.plan-node-fields {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 0.5rem;
+  margin: 0;
+}
