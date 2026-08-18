@@ -22,3 +22,16 @@ body {
   gap: 0 0.5rem;
   margin: 0;
 }
+
+.warning-chip {
+  border: 1px solid;
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+}
+
+.warning-panel {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

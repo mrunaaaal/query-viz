@@ -3,7 +3,7 @@
  * cost, and an exclusive-time placeholder (wired in the metrics issue).
  * Collapse state lives in PlanTree, which owns the recursion.
  */
-import type { PlanNode as PlanNodeData } from "../types.ts"
+import type { PlanNode as PlanNodeData, Warning } from "../types.ts"
 import { nodeTypeLabel } from "../lib/nodeType.ts"
 
 interface PlanNodeProps {
@@ -11,9 +11,10 @@ interface PlanNodeProps {
   expanded: boolean
   hasChildren: boolean
   onToggle: () => void
+  warnings?: Warning[]
 }
 
-function PlanNode({ node, expanded, hasChildren, onToggle }: PlanNodeProps) {
+function PlanNode({ node, expanded, hasChildren, onToggle, warnings = [] }: PlanNodeProps) {
   const label = nodeTypeLabel(node["Node Type"])
   const relation = node["Relation Name"]
   const index = node["Index Name"]
@@ -30,6 +31,11 @@ function PlanNode({ node, expanded, hasChildren, onToggle }: PlanNodeProps) {
       <span className="plan-node-type">{label}</span>
       {relation ? <span className="plan-node-relation">on {relation}</span> : null}
       {index ? <span className="plan-node-index">using {index}</span> : null}
+      {warnings.map((warning) => (
+        <span key={warning.rule} className="warning-chip" title={warning.message}>
+          {warning.rule}
+        </span>
+      ))}
       <dl className="plan-node-fields">
         <dt>Plan Rows</dt>
         <dd>{planRows}</dd>
